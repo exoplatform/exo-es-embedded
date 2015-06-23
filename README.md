@@ -13,7 +13,7 @@ $ mvn clean package
 ```
 [
  {
- "id": "elasticsearch-embedded-addon",
+ "id": "exo-elasticsearch-embedded",
  "version": "1.0.x-SNAPSHOT",
  "name": "elasticsearch embedded Add-on",
  "description": "The elasticsearch embedded Add-on",
@@ -27,7 +27,7 @@ $ mvn clean package
 ```
 1. Install the addon:
 ```
-$ ./addon install elasticsearch-embedded-addon --snapshots
+$ ./addon install exo-elasticsearch-embedded --snapshots
 ```
 1. Start PLF
 
