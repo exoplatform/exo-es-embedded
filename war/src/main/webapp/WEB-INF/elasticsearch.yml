@@ -1,0 +1,50 @@
+# Cluster name identifies your cluster for auto-discovery. If you're running
+# multiple clusters on the same network, make sure you're using unique names.
+#
+cluster.name: exoplatform-es
+# Node names are generated dynamically on startup, so you're relieved
+# from configuring them manually. You can tie this node to a specific name:
+#
+node.name: exoplatform-es-embedded
+
+# Every node can be configured to allow or deny being eligible as the master,
+# and to allow or deny to store the data.
+#
+# Allow this node to be eligible as a master node (enabled by default):
+#
+node.master: true
+#
+# Allow this node to store data (enabled by default):
+#
+node.data: true
+# Path to directory where to store index data allocated for this node.
+#
+path.data: gatein/data
+# Path to where plugins are installed:
+#
+path.plugins: es/plugins
+
+
+#################################### Plugin ###################################
+
+# If a plugin listed here is not installed for current node, the node will not start.
+#
+#plugin.mandatory: mapper-attachments,lang-groovy
+
+
+############################## Network And HTTP ###############################
+
+# Enabled HTTP completely:
+#
+http.enabled: true
+
+
+############################## HTTP Basic auth for ElasticSearch ###############################
+# see https://github.com/Asquera/elasticsearch-http-basic
+# True disables the default ES HTTP Transport module
+http.basic.enabled: true
+http.basic.user: root
+http.basic.password: gtn
+# If set to false no ip will be whitelisted. Uses Host Name Resolution from java.net.InetAddress
+# Default value ["localhost", "127.0.0.1"]
+http.basic.ipwhitelist: ["localhost", "127.0.0.1"]
