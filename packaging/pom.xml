@@ -3,19 +3,19 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <parent>
-    <artifactId>elasticsearch-embedded-parent</artifactId>
-    <groupId>org.exoplatform.addons.elasticsearch-embedded</groupId>
+    <artifactId>exo-es-embedded-parent</artifactId>
+    <groupId>org.exoplatform.addons.exo-es-embedded</groupId>
     <version>1.0.x-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>elasticsearch-embedded-packaging</artifactId>
+  <artifactId>exo-es-embedded-packaging</artifactId>
   <packaging>pom</packaging>
 
   <dependencies>
     <dependency>
-      <groupId>org.exoplatform.addons.elasticsearch-embedded</groupId>
-      <artifactId>elasticsearch-embedded-war</artifactId>
+      <groupId>org.exoplatform.addons.exo-es-embedded</groupId>
+      <artifactId>exo-es-embedded-war</artifactId>
       <version>1.0.x-SNAPSHOT</version>
       <type>war</type>
     </dependency>
@@ -52,7 +52,7 @@
               <finalName>${project.artifactId}-${project.version}</finalName>
               <appendAssemblyId>false</appendAssemblyId>
               <descriptors>
-                <descriptor>src/main/assemblies/elasticsearch-embedded-addon.xml</descriptor>
+                <descriptor>src/main/assemblies/exo-es-embedded-addon.xml</descriptor>
               </descriptors>
             </configuration>
           </execution>

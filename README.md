@@ -8,16 +8,16 @@ This add-on embedded an ElasticSearch in eXo Platform Server.
 ```
 $ mvn clean package
 ```
-1. Copy ```elasticsearch-embedded/packaging/target/elasticsearch-embedded-packaging-1.0.x-SNAPSHOT.zip``` to ```$PLATFORM_HOME/addons```
+1. Copy ```exo-es-embedded/packaging/target/exo-es-embedded-packaging-1.0.x-SNAPSHOT.zip``` to ```$PLATFORM_HOME/addons```
 1. Add the following entry in $PLATFORM_HOME/addons/local.json:
 ```
 [
  {
- "id": "exo-elasticsearch-embedded",
+ "id": "exo-es-embedded",
  "version": "1.0.x-SNAPSHOT",
  "name": "elasticsearch embedded Add-on",
  "description": "The elasticsearch embedded Add-on",
- "downloadUrl": "file://./elasticsearch-embedded-packaging-1.0.x-SNAPSHOT.zip",
+ "downloadUrl": "file://./exo-es-embedded-packaging-1.0.x-SNAPSHOT.zip",
  "vendor": "eXo platform",
  "license": "LGPLv3",
  "supportedDistributions": ["community","enterprise"],
@@ -27,7 +27,7 @@ $ mvn clean package
 ```
 1. Install the addon:
 ```
-$ ./addon install exo-elasticsearch-embedded --snapshots
+$ ./addon install exo-es-embedded --snapshots
 ```
 1. Start PLF
 

@@ -3,7 +3,7 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>elasticsearch-embedded</display-name>
+  <display-name>exo-es-embedded</display-name>
 
   <servlet>
     <servlet-name>node</servlet-name>
