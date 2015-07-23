@@ -19,11 +19,11 @@
  02110-1301 USA, or see the FSF site: http://www.fsf.org.
 
 -->
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>org.exoplatform.addons</groupId>
     <artifactId>addons-parent-pom</artifactId>
+    <groupId>org.exoplatform.addons</groupId>
     <version>4</version>
   </parent>
   <groupId>org.exoplatform.addons.exo-es-embedded</groupId>
@@ -32,23 +32,19 @@
   <packaging>pom</packaging>
   <name>Elasticsearch embedded parent POM</name>
   <description>Elasticsearch embedded add-on parent POM</description>
-
-  <scm>
-    <connection>scm:git:git://github.com/exo-addons/exo-es-embedded.git</connection>
-    <developerConnection>scm:git:git@github.com:exo-addons/exo-es-embedded.git</developerConnection>
-    <url>https://github.com/exo-addons/exo-es-embedded</url>
-    <tag>HEAD</tag>
-  </scm>
-
   <modules>
     <module>war</module>
     <module>packaging</module>
   </modules>
-
+  <scm>
+    <connection>scm:git:git://github.com/exo-addons/exo-es-embedded.git</connection>
+    <developerConnection>scm:git:git@github.com:exo-addons/exo-es-embedded.git</developerConnection>
+    <tag>HEAD</tag>
+    <url>https://github.com/exo-addons/exo-es-embedded</url>
+  </scm>
   <properties>
     <maven.compiler.target>1.7</maven.compiler.target>
     <maven.compiler.source>1.7</maven.compiler.source>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
-
 </project>
