@@ -2,14 +2,16 @@
 
 This add-on embedded an ElasticSearch in eXo Platform Server.
 
+Only localhost node can access the cluster and only localhost request to the node are accepted by default.
+
 ## Installing
 
 1. Build the add-on with Maven
 ```
 $ mvn clean package
 ```
-1. Copy ```exo-es-embedded/packaging/target/exo-es-embedded-packaging-1.0.x-SNAPSHOT.zip``` to ```$PLATFORM_HOME/addons```
-1. Add the following entry in $PLATFORM_HOME/addons/local.json:
+2. Copy ```exo-es-embedded/packaging/target/exo-es-embedded-packaging-1.0.x-SNAPSHOT.zip``` to ```$PLATFORM_HOME/addons```
+3. Add the following entry in $PLATFORM_HOME/addons/local.json:
 ```
 [
  {
@@ -25,11 +27,37 @@ $ mvn clean package
  }
 ]
 ```
-1. Install the addon:
+4. Install the addon:
 ```
 $ ./addon install exo-es-embedded --snapshots
 ```
-1. Start PLF
+5. Start PLF
+
+## Install Plugins
+
+_Only working on Tomcat distribtution._
+
+After installation of plugins you need to restart the server
+
+### Head
+
+Unzip https://github.com/mobz/elasticsearch-head/archive/master.zip to ```$PLATFORM_HOME/es/plugins/head/_site```
+
+After restart you can access it from http://localhost:9200/_plugin/head/
+
+For more documentation about head plugin you can take a look to official documentation: http://mobz.github.io/elasticsearch-head/
+
+### Marvel
+
+Unzip http://download.elasticsearch.org/elasticsearch/marvel/marvel-latest.zip to ```$PLATFORM_HOME/es/plugins/marvel```
+
+After restart you can access it from http://localhost:9200/_plugin/marvel/kibana/index.html
+
+For more documentation about marvel plugin you can take a look to official documentation: https://www.elastic.co/products/marvel
+
+### Others
+
+Like Head or Marvel just unzip the plugin in ```$PLATFORM_HOME/es/plugins/[plugin-name]``` and restart the server
 
 ## Testing
 
@@ -40,38 +68,3 @@ $ curl -v localhost:9200
 $ curl -XPUT 'http://localhost:9200/blog/user/tclement' -d '{ "name" : "Thibault Clement" }'
 $ curl -v localhost:9200/blog
 ```
-
-## Install Plugins
-The elasticsearch embedded add-on is packaged with two elasticsearch plugin:
-. https://github.com/Asquera/elasticsearch-http-basic to add authentication to ES
-. https://github.com/mobz/elasticsearch-head to browse and interact with your ES cluster
-
-To install it you just need to unzip the ```$PLATFORM_HOME/elasticsearch-plugins.zip``` and restart the server
-
-After installation of plugins, only localhost request or username/password request can access.
-
-### Testing elasticsearch-http-basic plugin
-
-**Authorized**
-
-| Request | Response Code      | Reason |
-|-------------------------------------------------------------|-------|----------------------------------------------|
-| ```$ curl -v localhost:9200``` | 200 | localhost is configured as whitelisted ip |
-| ```$ curl -XPUT 'http://localhost:9200/blog/user/tclement' -d '{ "name" : "Thibault Clement" }'``` | 200 | localhost is configured as whitelisted ip |
-| ```$ curl -v --user root:gtn no_localhost:9200/blog``` | 200 | root/gtn has set in configuration |
-
-**Not Authorized**
-
-| Request | Response Code      | Reason|
-|-------------------------------------------------------------|-------|----------------------------------------------|
-| ```$ curl -v no_localhost:9200``` | 200 | return "{\"OK\":{}}" although Unauthorized |
-| ```$ curl -XPUT 'no_localhost:9200/blog/user/tclement' -d '{ "name" : "Thibault Clement" }'``` | 401 | Unauthorized as not localhost |
-| ```$ curl -v --user root:notgtn no_localhost:9200/blog``` | 401 | Unauthorized as wrong password |
-
-_DISCLAIMER: elasticsearch-http-basic is working only on tomcat PLF distributions_
-
-### Testing head plugin
-
-http://localhost:9200/_plugin/head/
-
-For more documentation about head plugin you can take a look to official documentation: http://mobz.github.io/elasticsearch-head/
