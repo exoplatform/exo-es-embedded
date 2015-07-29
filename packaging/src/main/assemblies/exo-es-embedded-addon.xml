@@ -26,23 +26,13 @@
     <format>zip</format>
   </formats>
   <includeBaseDirectory>false</includeBaseDirectory>
-  <fileSets>
-    <fileSet>
-      <useDefaultExcludes>false</useDefaultExcludes>
-      <directory>${project.build.directory}</directory>
-      <outputDirectory>/</outputDirectory>
-      <includes>
-        <include>elasticsearch-plugins.zip</include>
-      </includes>
-    </fileSet>
-  </fileSets>
   <dependencySets>
     <dependencySet>
       <useProjectArtifact>false</useProjectArtifact>
       <outputDirectory>/</outputDirectory>
       <outputFileNameMapping>${artifact.artifactId}${dashClassifier?}.${artifact.extension}</outputFileNameMapping>
       <includes>
-        <include>org.exoplatform.addons.elasticsearch-embedded:elasticsearch-embedded-war</include>
+        <include>org.exoplatform.addons.exo-es-embedded:exo-es-embedded-war</include>
       </includes>
     </dependencySet>
   </dependencySets>

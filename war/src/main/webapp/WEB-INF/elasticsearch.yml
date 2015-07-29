@@ -1,7 +1,12 @@
+################################### Cluster ###################################
+
 # Cluster name identifies your cluster for auto-discovery. If you're running
 # multiple clusters on the same network, make sure you're using unique names.
 #
 cluster.name: exoplatform-es
+
+#################################### Node #####################################
+
 # Node names are generated dynamically on startup, so you're relieved
 # from configuring them manually. You can tie this node to a specific name:
 #
@@ -17,20 +22,14 @@ node.master: true
 # Allow this node to store data (enabled by default):
 #
 node.data: true
+
 # Path to directory where to store index data allocated for this node.
 #
 path.data: gatein/data
+
 # Path to where plugins are installed:
 #
 path.plugins: es/plugins
-
-
-#################################### Plugin ###################################
-
-# If a plugin listed here is not installed for current node, the node will not start.
-#
-#plugin.mandatory: mapper-attachments,lang-groovy
-
 
 ############################## Network And HTTP ###############################
 
@@ -38,13 +37,21 @@ path.plugins: es/plugins
 #
 http.enabled: true
 
+# Set both 'bind_host' and 'publish_host':
+#
+network.host: 127.0.0.1
 
-############################## HTTP Basic auth for ElasticSearch ###############################
-# see https://github.com/Asquera/elasticsearch-http-basic
-# True disables the default ES HTTP Transport module
-http.basic.enabled: true
-http.basic.user: root
-http.basic.password: gtn
-# If set to false no ip will be whitelisted. Uses Host Name Resolution from java.net.InetAddress
-# Default value ["localhost", "127.0.0.1"]
-http.basic.ipwhitelist: ["localhost", "127.0.0.1"]
+################################## Discovery ##################################
+
+# Unicast discovery allows to explicitly control which nodes will be used
+# to discover the cluster. It can be used when multicast is not present,
+# or to restrict the cluster communication-wise.
+#
+# 1. Disable multicast discovery (enabled by default):
+#
+discovery.zen.ping.multicast.enabled: false
+#
+# 2. Configure an initial list of master nodes in the cluster
+#    to perform discovery when new nodes (master or data) are started:
+#
+discovery.zen.ping.unicast.hosts: ["127.0.0.1"]
