@@ -30,7 +30,7 @@
     <dependencySet>
       <useProjectArtifact>false</useProjectArtifact>
       <outputDirectory>/</outputDirectory>
-      <outputFileNameMapping>${artifact.artifactId}${dashClassifier?}.${artifact.extension}</outputFileNameMapping>
+      <outputFileNameMapping>exo-es-embedded.war</outputFileNameMapping>
       <includes>
         <include>org.exoplatform.addons.exo-es-embedded:exo-es-embedded-war</include>
       </includes>
