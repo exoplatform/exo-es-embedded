@@ -9,6 +9,7 @@
   <artifactId>exo-es-embedded-war</artifactId>
   <packaging>war</packaging>
   <dependencies>
+
     <!-- Elastic Search -->
     <dependency>
       <groupId>org.elasticsearch</groupId>
@@ -21,15 +22,23 @@
       <version>2.7.0</version>
     </dependency>
     <dependency>
+      <groupId>org.codehaus.groovy</groupId>
+      <artifactId>groovy-all</artifactId>
+      <version>2.4.0</version>
+    </dependency>
+
+    <!-- Elastic plugins -->
+    <dependency>
       <groupId>org.elasticsearch</groupId>
       <artifactId>elasticsearch-mapper-attachments</artifactId>
       <version>2.7.1</version>
     </dependency>
     <dependency>
-      <groupId>org.codehaus.groovy</groupId>
-      <artifactId>groovy-all</artifactId>
-      <version>2.4.0</version>
+      <groupId>com.asquera.elasticsearch</groupId>
+      <artifactId>elasticsearch-http-basic</artifactId>
+      <version>1.5.1</version>
     </dependency>
+
   </dependencies>
   <build>
     <finalName>exo-es-embedded</finalName>
