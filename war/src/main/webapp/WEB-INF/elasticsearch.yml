@@ -67,7 +67,7 @@ http.basic.enabled: true
 #
 http.basic.ipwhitelist: ["localhost", "127.0.0.1"]
 
-http.basic.user: "root"
-http.basic.password: "gtn"
+http.basic.user: root
+http.basic.password: gtn
 
 # For more configuration see https://github.com/Asquera/elasticsearch-http-basic
