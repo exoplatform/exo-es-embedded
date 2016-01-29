@@ -25,7 +25,7 @@ node.data: true
 
 # Path to directory where to store index data allocated for this node.
 #
-path.data: gatein/data
+path.data: ${exo.data.dir}
 
 # Path to where plugins are installed:
 #
