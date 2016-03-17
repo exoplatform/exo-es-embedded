@@ -27,12 +27,21 @@
       <groupId>org.elasticsearch</groupId>
       <artifactId>elasticsearch</artifactId>
     </dependency>
+    <dependency>
+      <groupId>net.java.dev.jna</groupId>
+      <artifactId>jna</artifactId>
+    </dependency>
 
     <!-- Elastic plugins -->
     <dependency>
-      <groupId>org.elasticsearch</groupId>
-      <artifactId>elasticsearch-mapper-attachments</artifactId>
+      <groupId>org.elasticsearch.plugin</groupId>
+      <artifactId>mapper-attachments</artifactId>
       <version>${elasticsearch.mapper-attachments.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.elasticsearch.plugin</groupId>
+      <artifactId>delete-by-query</artifactId>
+      <version>${elasticsearch.delete-by-query.version}</version>
     </dependency>
 
   </dependencies>
