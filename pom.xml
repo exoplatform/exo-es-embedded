@@ -49,9 +49,10 @@
     <exoplatform.kernel.version>2.5.4-GA</exoplatform.kernel.version>
     <servlet.version>3.0.1</servlet.version>
     <!-- Issue with the PLF pom parent that trigger lucene 3.6.2 (Only working with elastic version < 0.20.6) -->
-    <elasticsearch.version>1.7.2</elasticsearch.version>
-    <lucene.version>4.10.4</lucene.version>
-    <elasticsearch.mapper-attachments.version>2.7.1</elasticsearch.mapper-attachments.version>
+    <elasticsearch.version>2.2.1</elasticsearch.version>
+    <lucene.version>5.4.1</lucene.version>
+    <elasticsearch.mapper-attachments.version>2.2.1</elasticsearch.mapper-attachments.version>
+    <jna.version>4.1.0</jna.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -75,6 +76,11 @@
         <groupId>org.apache.lucene</groupId>
         <artifactId>lucene-core</artifactId>
         <version>${lucene.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>net.java.dev.jna</groupId>
+        <artifactId>jna</artifactId>
+        <version>${jna.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

@@ -1,6 +1,6 @@
 package org.exoplatform.addons.es;
 
-import org.elasticsearch.common.settings.ImmutableSettings;
+import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.node.Node;
 import org.elasticsearch.node.NodeBuilder;
 import org.exoplatform.services.log.ExoLogger;
@@ -26,7 +26,7 @@ public class EmbeddedESStartupServlet extends HttpServlet {
   public void init() throws ServletException {
 
     LOG.info("Initializing elasticsearch Node '" + getServletName() + "'");
-    ImmutableSettings.Builder settings = ImmutableSettings.settingsBuilder();
+    Settings.Builder settings = Settings.settingsBuilder();
 
     InputStream resourceAsStream = getServletContext().getResourceAsStream("/WEB-INF/elasticsearch.yml");
     if (resourceAsStream != null) {

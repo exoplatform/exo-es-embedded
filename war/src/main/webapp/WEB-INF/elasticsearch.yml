@@ -23,6 +23,10 @@ node.master: true
 #
 node.data: true
 
+# Home Path:
+#
+path.home: es
+
 # Path to directory where to store index data allocated for this node.
 #
 path.data: ${exo.data.dir}
