@@ -46,7 +46,8 @@
     <maven.compiler.target>1.7</maven.compiler.target>
     <maven.compiler.source>1.7</maven.compiler.source>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <exoplatform.version>4.3.x-SNAPSHOT</exoplatform.version>
+    <exoplatform.kernel.version>2.5.4-GA</exoplatform.kernel.version>
+    <servlet.version>3.0.1</servlet.version>
     <!-- Issue with the PLF pom parent that trigger lucene 3.6.2 (Only working with elastic version < 0.20.6) -->
     <elasticsearch.version>1.7.2</elasticsearch.version>
     <lucene.version>4.10.4</lucene.version>
@@ -54,14 +55,17 @@
   </properties>
   <dependencyManagement>
     <dependencies>
-      <!-- Import versions from platform project -->
       <dependency>
-        <groupId>org.exoplatform.platform</groupId>
-        <artifactId>platform</artifactId>
-        <version>${exoplatform.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>${servlet.version}</version>
       </dependency>
+      <dependency>
+        <groupId>org.exoplatform.kernel</groupId>
+        <artifactId>exo.kernel.commons</artifactId>
+        <version>${exoplatform.kernel.version}</version>
+      </dependency>
+
       <dependency>
         <groupId>org.elasticsearch</groupId>
         <artifactId>elasticsearch</artifactId>
