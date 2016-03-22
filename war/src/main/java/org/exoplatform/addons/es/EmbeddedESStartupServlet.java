@@ -1,4 +1,4 @@
-package org.exoplatform.es;
+package org.exoplatform.addons.es;
 
 import org.elasticsearch.common.settings.ImmutableSettings;
 import org.elasticsearch.node.Node;
