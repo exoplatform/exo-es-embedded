@@ -34,11 +34,6 @@
       <artifactId>elasticsearch-mapper-attachments</artifactId>
       <version>${elasticsearch.mapper-attachments.version}</version>
     </dependency>
-    <dependency>
-      <groupId>com.asquera.elasticsearch</groupId>
-      <artifactId>elasticsearch-http-basic</artifactId>
-      <version>${elasticsearch.http-basic.version}</version>
-    </dependency>
 
   </dependencies>
   <build>
