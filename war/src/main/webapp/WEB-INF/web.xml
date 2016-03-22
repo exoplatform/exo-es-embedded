@@ -7,8 +7,8 @@
   <display-name>exo-es-embedded</display-name>
 
   <servlet>
-    <servlet-name>node</servlet-name>
-    <servlet-class>org.elasticsearch.wares.NodeServlet</servlet-class>
+    <servlet-name>embedded-es</servlet-name>
+    <servlet-class>org.exoplatform.es.EmbeddedESStartupServlet</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
 
