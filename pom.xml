@@ -46,7 +46,7 @@
     <maven.compiler.target>1.7</maven.compiler.target>
     <maven.compiler.source>1.7</maven.compiler.source>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <exoplatform.kernel.version>2.5.4-GA</exoplatform.kernel.version>
+    <org.exoplatform.kernel.version>2.5.4-GA</org.exoplatform.kernel.version>
     <servlet.version>3.0.1</servlet.version>
     <!-- Issue with the PLF pom parent that trigger lucene 3.6.2 (Only working with elastic version < 0.20.6) -->
     <elasticsearch.version>1.7.2</elasticsearch.version>
@@ -63,7 +63,7 @@
       <dependency>
         <groupId>org.exoplatform.kernel</groupId>
         <artifactId>exo.kernel.commons</artifactId>
-        <version>${exoplatform.kernel.version}</version>
+        <version>${org.exoplatform.kernel.version}</version>
       </dependency>
 
       <dependency>
