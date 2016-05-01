@@ -38,6 +38,11 @@
       <artifactId>mapper-attachments</artifactId>
       <version>${elasticsearch.mapper-attachments.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.elasticsearch.plugin</groupId>
+      <artifactId>delete-by-query</artifactId>
+      <version>${elasticsearch.delete-by-query.version}</version>
+    </dependency>
 
   </dependencies>
   <build>
