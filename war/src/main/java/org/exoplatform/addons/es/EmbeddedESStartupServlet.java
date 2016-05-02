@@ -45,6 +45,9 @@ public class EmbeddedESStartupServlet extends HttpServlet {
       }
     }
 
+    // replace variable in ${...} by their value
+    settings.replacePropertyPlaceholders();
+
     if (settings.get("http.enabled") == null) {
       settings.put("http.enabled", false);
     }
