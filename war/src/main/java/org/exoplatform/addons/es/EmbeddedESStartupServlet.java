@@ -7,6 +7,7 @@ import org.elasticsearch.mapper.attachments.MapperAttachmentsPlugin;
 import org.elasticsearch.node.Node;
 import org.elasticsearch.plugin.deletebyquery.DeleteByQueryPlugin;
 import org.elasticsearch.plugins.Plugin;
+import org.exoplatform.commons.utils.PropertyManager;
 import org.exoplatform.services.log.ExoLogger;
 import org.exoplatform.services.log.Log;
 
@@ -27,10 +28,19 @@ public class EmbeddedESStartupServlet extends HttpServlet {
 
   private static final Log LOG = ExoLogger.getLogger(EmbeddedESStartupServlet.class);
 
+  public static final String ES_EMBEDDED_ENABLED_PROPERTY_NAME = "exo.es.embedded.enabled";
+
   protected Node node;
 
   @Override
   public void init() throws ServletException {
+
+    // check if embedded ES must be started or not (defaults to true)
+    String esEmbeddedEnabled = PropertyManager.getProperty(ES_EMBEDDED_ENABLED_PROPERTY_NAME);
+    if(esEmbeddedEnabled != null && esEmbeddedEnabled.trim().equals("false")) {
+      LOG.debug("ES Embedded node startup has been disabled");
+      return;
+    }
 
     LOG.info("Initializing elasticsearch Node '" + getServletName() + "'");
     Settings.Builder settings = Settings.settingsBuilder();
