@@ -4,7 +4,7 @@
   <parent>
     <artifactId>exo-es-embedded-parent</artifactId>
     <groupId>org.exoplatform.addons.exo-es-embedded</groupId>
-    <version>1.0.x-SNAPSHOT</version>
+    <version>1.0.0-RC03</version>
   </parent>
   <artifactId>exo-es-embedded-packaging</artifactId>
   <packaging>pom</packaging>
@@ -12,7 +12,7 @@
     <dependency>
       <groupId>org.exoplatform.addons.exo-es-embedded</groupId>
       <artifactId>exo-es-embedded-war</artifactId>
-      <version>1.0.x-SNAPSHOT</version>
+      <version>1.0.0-RC03</version>
       <type>war</type>
     </dependency>
   </dependencies>
