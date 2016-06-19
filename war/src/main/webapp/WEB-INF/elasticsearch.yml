@@ -49,6 +49,10 @@ index.auto_expand_replicas: 0-5
 #
 http.enabled: true
 
+# Specify the http port to use:
+#
+http.port: ${es.http.port}
+
 # Set both 'bind_host' and 'publish_host':
 #
 network.host: 127.0.0.1

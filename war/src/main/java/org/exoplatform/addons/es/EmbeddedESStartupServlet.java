@@ -62,6 +62,10 @@ public class EmbeddedESStartupServlet extends HttpServlet {
       settings.put("http.enabled", false);
     }
 
+    if (Boolean.valueOf(settings.get("http.enabled")) && settings.get("http.port") == null) {
+      settings.put("http.port", 9200);
+    }
+
     // use the custom EmbeddedNode class instead of Node directly to be able to load plugins from classpath
     Environment environment = new Environment(settings.build());
     Collection plugins = new ArrayList<>();
