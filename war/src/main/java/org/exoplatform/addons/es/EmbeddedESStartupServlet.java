@@ -2,7 +2,6 @@ package org.exoplatform.addons.es;
 
 import org.elasticsearch.Version;
 import org.elasticsearch.common.settings.Settings;
-import org.elasticsearch.env.Environment;
 import org.elasticsearch.mapper.attachments.MapperAttachmentsPlugin;
 import org.elasticsearch.node.Node;
 import org.elasticsearch.plugin.deletebyquery.DeleteByQueryPlugin;
@@ -55,18 +54,14 @@ public class EmbeddedESStartupServlet extends HttpServlet {
       }
     }
 
-    // replace variable in ${...} by their value
-    settings.replacePropertyPlaceholders();
-
     if (settings.get("http.enabled") == null) {
       settings.put("http.enabled", false);
     }
 
     // use the custom EmbeddedNode class instead of Node directly to be able to load plugins from classpath
-    Environment environment = new Environment(settings.build());
     Collection plugins = new ArrayList<>();
     Collections.<Class<? extends Plugin>>addAll(plugins, MapperAttachmentsPlugin.class, DeleteByQueryPlugin.class);
-    node = new EmbeddedNode(environment, Version.CURRENT, plugins);
+    node = new EmbeddedNode(settings.build(), Version.CURRENT, plugins);
     node.start();
   }
 
