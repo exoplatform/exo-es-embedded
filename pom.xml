@@ -24,7 +24,7 @@
   <parent>
     <artifactId>addons-parent-pom</artifactId>
     <groupId>org.exoplatform.addons</groupId>
-    <version>6</version>
+    <version>7-RC01</version>
   </parent>
   <groupId>org.exoplatform.addons.exo-es-embedded</groupId>
   <artifactId>exo-es-embedded-parent</artifactId>
