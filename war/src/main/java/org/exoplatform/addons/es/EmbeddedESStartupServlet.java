@@ -1,79 +1,119 @@
 package org.exoplatform.addons.es;
 
-import org.elasticsearch.Version;
-import org.elasticsearch.common.settings.Settings;
-import org.elasticsearch.mapper.attachments.MapperAttachmentsPlugin;
-import org.elasticsearch.node.Node;
-import org.elasticsearch.plugin.deletebyquery.DeleteByQueryPlugin;
-import org.elasticsearch.plugins.Plugin;
-import org.exoplatform.commons.utils.PropertyManager;
-import org.exoplatform.services.log.ExoLogger;
-import org.exoplatform.services.log.Log;
-
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+
+import org.apache.commons.lang.StringUtils;
+import org.elasticsearch.Version;
+import org.elasticsearch.common.settings.Settings;
+import org.elasticsearch.index.reindex.ReindexPlugin;
+import org.elasticsearch.ingest.attachment.IngestAttachmentPlugin;
+import org.elasticsearch.ingest.common.IngestCommonPlugin;
+import org.elasticsearch.mapper.attachments.MapperAttachmentsPlugin;
+import org.elasticsearch.node.Node;
+import org.elasticsearch.node.NodeValidationException;
+import org.elasticsearch.plugins.Plugin;
+import org.elasticsearch.transport.Netty4Plugin;
+
+import org.exoplatform.container.PortalContainer;
+import org.exoplatform.container.RootContainer;
+import org.exoplatform.container.xml.Deserializer;
+import org.exoplatform.services.log.ExoLogger;
+import org.exoplatform.services.log.Log;
+
 /**
  * Servlet starting an embedded Elasticsearch node during PLF startup, and stopping it when PLF stops.
  * It reads configuration from /WEB-INF/elasticsearch.yml.
  */
 public class EmbeddedESStartupServlet extends HttpServlet {
+  private static final long serialVersionUID = -7795035468127583905L;
 
   private static final Log LOG = ExoLogger.getLogger(EmbeddedESStartupServlet.class);
 
-  public static final String ES_EMBEDDED_ENABLED_PROPERTY_NAME = "exo.es.embedded.enabled";
+  public static final String ES_EMBEDDED_ENABLED_PROPERTY_NAME = "${exo.es.embedded.enabled}";
+  public static final String ES_EMBEDDED_CONFIGURATION_FILE = "${exo.es.embedded.configuration.file}";
 
   protected Node node;
 
   @Override
   public void init() throws ServletException {
-
     // check if embedded ES must be started or not (defaults to true)
-    String esEmbeddedEnabled = PropertyManager.getProperty(ES_EMBEDDED_ENABLED_PROPERTY_NAME);
+    String esEmbeddedEnabled = Deserializer.resolveString(ES_EMBEDDED_ENABLED_PROPERTY_NAME);
     if(esEmbeddedEnabled != null && esEmbeddedEnabled.trim().equals("false")) {
-      LOG.debug("ES Embedded node startup has been disabled");
+      LOG.info("ES Embedded node startup has been disabled");
       return;
     }
 
-    LOG.info("Initializing elasticsearch Node '" + getServletName() + "'");
-    Settings.Builder settings = Settings.settingsBuilder();
+    String esEmbeddedConfigurationPath = Deserializer.resolveString(ES_EMBEDDED_CONFIGURATION_FILE);
+    if (StringUtils.isBlank(esEmbeddedConfigurationPath) || esEmbeddedConfigurationPath.equals(ES_EMBEDDED_CONFIGURATION_FILE)) {
+      LOG.info("Use default ES Embedded configuration file location: /WEB-INF/elasticsearch.yml");
+      esEmbeddedConfigurationPath = "/WEB-INF/elasticsearch.yml";
+    } else {
+      LOG.info("Loading ES Embedded configuration file from custom location : " + esEmbeddedConfigurationPath);
+    }
 
-    InputStream resourceAsStream = getServletContext().getResourceAsStream("/WEB-INF/elasticsearch.yml");
-    if (resourceAsStream != null) {
+    LOG.info("Initializing elasticsearch Node '" + getServletName() + "'");
+    Settings.Builder settings = Settings.builder();
+
+    InputStream resourceAsStream = null;
+    try {
+      resourceAsStream = getServletContext().getResourceAsStream(esEmbeddedConfigurationPath);
+      if (resourceAsStream == null) {
+        resourceAsStream = new FileInputStream(esEmbeddedConfigurationPath);
+      }
       settings.loadFromStream("/WEB-INF/elasticsearch.yml", resourceAsStream);
-      try {
-        resourceAsStream.close();
-      } catch (IOException e) {
-        // ignore
+      // Parse eXo custom ES settings
+      settings.internalMap().forEach((key, value) -> {
+        if (!StringUtils.isBlank(value)) {
+          while (value.contains("${")) {
+            String newValue = Deserializer.resolveString(value);
+            if (newValue.equals(value)) {
+              LOG.warn("can't resolve expression " + value);
+              break;
+            }
+            value = newValue;
+          }
+          settings.put(key, value);
+        }
+      });
+    } catch (IOException e) {
+      throw new ServletException("Error while initializing elasticsearch node '" + getServletName() + "'", e);
+    } finally {
+      if(resourceAsStream != null) {
+        try {
+          resourceAsStream.close();
+        } catch (IOException e) {
+          LOG.warn("Can't close Input Stream", e);
+        }
       }
     }
 
-    if (settings.get("http.enabled") == null) {
-      settings.put("http.enabled", false);
-    }
-
     // use the custom EmbeddedNode class instead of Node directly to be able to load plugins from classpath
-    Collection plugins = new ArrayList<>();
-    Collections.<Class<? extends Plugin>>addAll(plugins, MapperAttachmentsPlugin.class, DeleteByQueryPlugin.class);
+    Collection<Class<? extends Plugin>> plugins = new ArrayList<>();
+    Collections.<Class<? extends Plugin>>addAll(plugins, Netty4Plugin.class, IngestCommonPlugin.class, IngestAttachmentPlugin.class, ReindexPlugin.class, MapperAttachmentsPlugin.class);
     node = new EmbeddedNode(settings.build(), Version.CURRENT, plugins);
-    node.start();
-  }
-
-  @Override
-  public void init(ServletConfig config) throws ServletException {
-    super.init(config);
+    try {
+      node.start();
+    } catch (NodeValidationException e) {
+      LOG.error("Error when starting ES in embedded mode", e);
+    }
   }
 
   @Override
   public void destroy() {
     if (node != null) {
-      node.close();
+      try {
+        node.close();
+      } catch (IOException e) {
+        LOG.error("Error when stopping ES in embedded mode", e);
+      }
     }
   }
 }
