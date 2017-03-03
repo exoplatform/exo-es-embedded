@@ -49,28 +49,23 @@ public class EmbeddedESStartupServlet extends HttpServlet {
     Settings.Builder settings = Settings.builder();
 
     InputStream resourceAsStream = getServletContext().getResourceAsStream("/WEB-INF/elasticsearch.yml");
-    if (resourceAsStream != null) {
-      try {
-        settings.loadFromStream("/WEB-INF/elasticsearch.yml", resourceAsStream);
-        resourceAsStream.close();
-      } catch (IOException e) {
-        // ignore
-      }
+    if (resourceAsStream == null) {
+      throw new ServletException("Error while initializing elasticsearch node, configuration file '/WEB-INF/elasticsearch.yml' couldn't be found");
     }
-
-    if (settings.get("http.enabled") == null) {
-      settings.put("http.enabled", false);
+    try {
+      settings.loadFromStream("/WEB-INF/elasticsearch.yml", resourceAsStream);
+      resourceAsStream.close();
+    } catch (IOException e) {
+      throw new ServletException("Error while initializing elasticsearch node '" + getServletName() + "'", e);
     }
 
     String pathData = settings.get("path.data");
-    if (pathData == null || pathData.startsWith("${")) {
-      if (pathData == null) {
-        settings.put("path.data", System.getProperty("exo.data.dir"));
-      } else {
-        pathData = pathData.replace("${", "");
-        pathData = pathData.replace("}", "");
-        settings.put("path.data", System.getProperty(pathData));
-      }
+    if (pathData == null) {
+      settings.put("path.data", System.getProperty("exo.data.dir"));
+    } else if (pathData.startsWith("${")) {
+      pathData = pathData.replace("${", "");
+      pathData = pathData.replace("}", "");
+      settings.put("path.data", System.getProperty(pathData));
     }
 
     // use the custom EmbeddedNode class instead of Node directly to be able to load plugins from classpath
