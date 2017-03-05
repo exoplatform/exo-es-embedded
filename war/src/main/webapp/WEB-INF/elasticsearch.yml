@@ -1,4 +1,4 @@
-################################### Cluster ###################################
+#################################### Cluster ##################################
 
 # Cluster name identifies your cluster for auto-discovery. If you're running
 # multiple clusters on the same network, make sure you're using unique names.
@@ -23,6 +23,8 @@ node.master: true
 #
 node.data: true
 
+path.logs: logs
+
 # Home Path:
 #
 path.home: es
@@ -31,39 +33,20 @@ path.home: es
 #
 path.data: ${exo.data.dir}
 
-# Path to where plugins are installed:
-#
-path.plugins: es/plugins
-
-# Default usage of es embedded addon is for test
-#
-index.number_of_replicas: 0
-
-# Auto-expand the number of replicas based on the number of available nodes:
-#
-index.auto_expand_replicas: 0-5
-
 ############################## Network And HTTP ###############################
 
 # Enabled HTTP completely:
 #
 http.enabled: true
 
-# Set both 'bind_host' and 'publish_host':
+# Transport configuration
 #
-network.host: 127.0.0.1
+network.host: _local_
+transport.type: local
+http.type: netty4
 
-# Don't try to build a cluster by default
-#
-node.local: true
-
-################################## Discovery ##################################
-
-# Unicast discovery allows to explicitly control which nodes will be used
-# to discover the cluster. It can be used when multicast is not present,
-# or to restrict the cluster communication-wise.
-#
-# 1. Disable multicast discovery (enabled by default):
-#
-discovery.zen.ping.multicast.enabled: false
+# Disable dynamic scripting
+script.inline: false
+script.stored: false
+script.file: false
 
