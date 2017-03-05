@@ -33,14 +33,6 @@ path.home: es
 #
 path.data: ${exo.data.dir}
 
-# Default usage of es embedded addon is for test
-#
-#index.number_of_replicas: 0
-
-# Auto-expand the number of replicas based on the number of available nodes:
-#
-#index.auto_expand_replicas: 0-5
-
 ############################## Network And HTTP ###############################
 
 # Enabled HTTP completely:
