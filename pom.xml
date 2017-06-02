@@ -37,10 +37,10 @@
     <module>packaging</module>
   </modules>
   <scm>
-    <connection>scm:git:git://github.com/exo-addons/exo-es-embedded.git</connection>
-    <developerConnection>scm:git:git@github.com:exo-addons/exo-es-embedded.git</developerConnection>
+    <connection>scm:git:git://github.com/exoplatform/exo-es-embedded.git</connection>
+    <developerConnection>scm:git:git@github.com:exoplatform/exo-es-embedded.git</developerConnection>
     <tag>HEAD</tag>
-    <url>https://github.com/exo-addons/exo-es-embedded</url>
+    <url>https://github.com/exoplatform/exo-es-embedded</url>
   </scm>
   <properties>
     <org.exoplatform.platform.version>5.0.x-SNAPSHOT</org.exoplatform.platform.version>
