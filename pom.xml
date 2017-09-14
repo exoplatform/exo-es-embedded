@@ -48,6 +48,10 @@
     <!-- Issue with the PLF pom parent that trigger lucene 3.6.2 (Only working with elastic version < 0.20.6) -->
     <lucene.version>6.4.2</lucene.version>
     <jna.version>4.1.0</jna.version>
+
+    <!-- required by elastic ingest-attachment plugin -->
+    <tika.version>1.14</tika.version>
+    <poi.version>3.15</poi.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -58,6 +62,39 @@
         <version>${org.exoplatform.platform.version}</version>
         <type>pom</type>
         <scope>import</scope>
+      </dependency>
+
+      <!-- override versions imported from PLF -->
+      <dependency>
+        <groupId>org.apache.tika</groupId>
+        <artifactId>tika-core</artifactId>
+        <version>${tika.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.tika</groupId>
+        <artifactId>tika-parsers</artifactId>
+        <version>${tika.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi-ooxml</artifactId>
+        <version>${poi.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi</artifactId>
+        <version>${poi.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi-ooxml-schemas</artifactId>
+        <version>${poi.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi-scratchpad</artifactId>
+        <version>${poi.version}</version>
       </dependency>
 
       <dependency>
