@@ -50,6 +50,7 @@
     <jna.version>4.1.0</jna.version>
 
     <!-- required by elastic ingest-attachment plugin -->
+    <org.apache.log4j.version>2.7</org.apache.log4j.version>
     <tika.version>1.14</tika.version>
     <poi.version>3.15</poi.version>
   </properties>
@@ -96,6 +97,18 @@
         <artifactId>poi-scratchpad</artifactId>
         <version>${poi.version}</version>
       </dependency>
+
+      <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-core</artifactId>
+        <version>${org.apache.log4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-api</artifactId>
+        <version>${org.apache.log4j.version}</version>
+      </dependency>
+
 
       <dependency>
         <groupId>javax.servlet</groupId>
