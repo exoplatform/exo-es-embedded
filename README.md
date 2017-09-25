@@ -6,6 +6,14 @@ Only localhost node can access the cluster and only localhost request to the nod
 
 ## Installing
 
+1. Install ElasticSearch ingest-attachment plugin maven pom
+- This step is workaround solution to fix the missing dependency issue of ingest-attachment maven POM. Follow steps to install in your local repository
+- Download plugin jar from https://repository.exoplatform.org/content/groups/public/org/elasticsearch/plugin/ingest-attachment/5.3.2/ingest-attachment-5.3.2.jar
+- POM file for the plugin is is the root project directory. Lets install by mvn command:
+```
+$ mvn install:install-file -Dfile=ingest-attachment-5.3.2.jar -DpomFile=ingest-attachment-5.3.2.pom
+```
+
 1. Build the add-on with Maven
 ```
 $ mvn clean package
