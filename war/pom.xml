@@ -62,59 +62,22 @@
     </dependency>
 
     <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+    </dependency>
+
+    <dependency>
       <groupId>org.elasticsearch.plugin</groupId>
       <artifactId>transport-netty4-client</artifactId>
     </dependency>
 
-     <dependency><!-- required by elasticsearch -->
-        <groupId>org.apache.logging.log4j</groupId>
-        <artifactId>log4j-core</artifactId>
-    </dependency>
-
-     <dependency><!-- required by elasticsearch -->
-        <groupId>org.apache.logging.log4j</groupId>
-        <artifactId>log4j-api</artifactId>
-    </dependency>
-
-     <dependency><!-- required by elasticsearch -->
-        <groupId>commons-logging</groupId>
-        <artifactId>commons-logging</artifactId>
-    </dependency>
-    
-     <dependency><!-- required by elasticsearch -->
-        <groupId>org.apache.tika</groupId>
-        <artifactId>tika-core</artifactId>
-    </dependency>
-    
-     <dependency><!-- required by elasticsearch -->
-        <groupId>org.apache.tika</groupId>
-        <artifactId>tika-parsers</artifactId>
-        <exclusions>
-        <exclusion>
-          <groupId>org.apache.pdfbox</groupId>
-          <artifactId>pdfbox</artifactId>
-        </exclusion>
-        </exclusions>
-    </dependency>
-
-    <dependency><!-- required by elasticsearch -->
-        <groupId>joda-time</groupId>
-        <artifactId>joda-time</artifactId>
-    </dependency>
-
     <dependency>
-      <groupId>org.apache.pdfbox</groupId>
-      <artifactId>pdfbox</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.pdfbox</groupId>
-      <artifactId>pdfbox-tools</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.pdfbox</groupId>
-      <artifactId>debugger-app</artifactId>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
     </dependency>
   </dependencies>
   <build>
