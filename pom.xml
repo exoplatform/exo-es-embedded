@@ -46,7 +46,7 @@
     <org.exoplatform.platform.version>5.0.x-SNAPSHOT</org.exoplatform.platform.version>
     <servlet.version>3.0.1</servlet.version>
     <!-- Issue with the PLF pom parent that trigger lucene 3.6.2 (Only working with elastic version < 0.20.6) -->
-    <lucene.version>6.4.2</lucene.version>
+    <lucene.version>6.6.1</lucene.version>
     <jna.version>4.1.0</jna.version>
 
     <!-- required by elastic ingest-attachment plugin -->
