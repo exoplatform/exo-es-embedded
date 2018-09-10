@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.elasticsearch.plugin</groupId>
   <artifactId>ingest-attachment</artifactId>
-  <version>5.3.2</version>
+  <version>5.6.11</version>
   <description>POM was created by Sonatype Nexus</description>
 
   <properties>
-    <tika.version>1.14</tika.version>
-    <pdfbox.version>2.0.3</pdfbox.version>
+    <tika.version>1.18</tika.version>
+    <pdfbox.version>2.0.9</pdfbox.version>
     <bouncycastle.version>1.55</bouncycastle.version>
-    <poi.version>3.15</poi.version>
-    <mime4j.version>0.7.2</mime4j.version>
+    <poi.version>3.17</poi.version>
+    <mime4j.version>0.8.1</mime4j.version>
   </properties>
 
   <dependencies>
@@ -35,7 +35,7 @@
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
-      <version>2.4</version>
+      <version>2.6</version>
     </dependency>
     <dependency>
       <groupId>com.googlecode.juniversalchardet</groupId>
@@ -60,7 +60,7 @@
     <dependency>
       <groupId>org.apache.pdfbox</groupId>
       <artifactId>jempbox</artifactId>
-      <version>1.8.12</version>
+      <version>1.8.13</version>
     </dependency>
     <dependency>
       <groupId>commons-logging</groupId>
@@ -132,8 +132,13 @@
     </dependency>
     <dependency>
       <groupId>org.apache.commons</groupId>
+      <artifactId>commons-collections4</artifactId>
+      <version>4.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
       <artifactId>commons-compress</artifactId>
-      <version>1.10</version>
+      <version>1.16.1</version>
     </dependency>
     <dependency>
       <groupId>org.apache.james</groupId>
@@ -144,6 +149,21 @@
       <groupId>org.apache.james</groupId>
       <artifactId>apache-mime4j-dom</artifactId>
       <version>${mime4j.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.tukaani</groupId>
+      <artifactId>xz</artifactId>
+      <version>1.8</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.pdfbox</groupId>
+      <artifactId>jbig2-imageio</artifactId>
+      <version>3.0.1</version>
+    </dependency>
+    <dependency>
+      <groupId>com.github.jai-imageio</groupId>
+      <artifactId>jai-imageio-jpeg2000</artifactId>
+      <version>1.3.0</version>
     </dependency>
   </dependencies>
 </project>
