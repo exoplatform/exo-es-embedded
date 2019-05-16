@@ -28,7 +28,7 @@
   </parent>
   <groupId>org.exoplatform.addons.exo-es-embedded</groupId>
   <artifactId>exo-es-embedded-parent</artifactId>
-  <version>2.2.1</version>
+  <version>2.2.x-acc222-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>eXo Add-on:: Elasticsearch embedded parent POM</name>
   <description>Elasticsearch embedded add-on parent POM</description>
@@ -43,7 +43,7 @@
     <url>https://github.com/exoplatform/exo-es-embedded</url>
   </scm>
   <properties>
-    <org.exoplatform.platform.version>5.2.1</org.exoplatform.platform.version>
+    <org.exoplatform.platform.version>5.2.x-acc222-SNAPSHOT</org.exoplatform.platform.version>
     <servlet.version>3.0.1</servlet.version>
     <!-- Issue with the PLF pom parent that trigger lucene 3.6.2 (Only working with elastic version < 0.20.6) -->
     <lucene.version>6.6.1</lucene.version>
