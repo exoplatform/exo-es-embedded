@@ -28,7 +28,7 @@
   </parent>
   <groupId>org.exoplatform.addons.exo-es-embedded</groupId>
   <artifactId>exo-es-embedded-parent</artifactId>
-  <version>2.3.x-SNAPSHOT</version>
+  <version>2.3.0-RC06</version>
   <packaging>pom</packaging>
   <name>eXo Add-on:: Elasticsearch embedded parent POM</name>
   <description>Elasticsearch embedded add-on parent POM</description>
@@ -39,7 +39,7 @@
   <scm>
     <connection>scm:git:git://github.com/exoplatform/exo-es-embedded.git</connection>
     <developerConnection>scm:git:git@github.com:exoplatform/exo-es-embedded.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>2.3.0-RC06</tag>
     <url>https://github.com/exoplatform/exo-es-embedded</url>
   </scm>
   <properties>
