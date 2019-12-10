@@ -57,6 +57,7 @@
     <commons-collections4.version>4.1</commons-collections4.version>
     <slf4j.version>1.6.2</slf4j.version>
     <xz.version>1.8</xz.version>
+    <jodatime.version>2.9.5</jodatime.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -132,9 +133,19 @@
         <version>${lucene.version}</version>
       </dependency>
       <dependency>
+        <groupId>org.apache.lucene</groupId>
+        <artifactId>lucene-memory</artifactId>
+        <version>${lucene.version}</version>
+      </dependency>
+      <dependency>
         <groupId>net.java.dev.jna</groupId>
         <artifactId>jna</artifactId>
         <version>${jna.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>joda-time</groupId>
+        <artifactId>joda-time</artifactId>
+        <version>${jodatime.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
