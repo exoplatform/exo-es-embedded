@@ -50,7 +50,7 @@
     <jna.version>4.1.0</jna.version>
 
     <!-- required by elastic ingest-attachment plugin -->
-    <org.apache.log4j.version>2.7</org.apache.log4j.version>
+    <org.apache.log4j.version>2.16.0</org.apache.log4j.version>
     <tika.version>1.18</tika.version>
     <poi.version>3.17</poi.version>
     <pdfbox.version>2.0.9</pdfbox.version>
